@@ -1,24 +1,25 @@
 import express from "express"
 import dotenv from "dotenv"
-import cors from "cros"
+import cors from "cors"
 import "./database/conn.js"
-import {userRouter} from "./routers/userRouter.js"
- 
-dotenv.config({path:"./config.env"})
 
-const app=express()
+import { userRouter } from "./routers/userRouter.js"
+// import { companyRouter } from "./routers/companyRouter.js"
+// import { adminRouter } from "./routers/adminRouter.js"
 
-let port=process.env.PORT || 6012
+dotenv.config({ path: "./config.env" })
+
+const app = express()
+
+let port = process.env.PORT || 5012
 
 app.use(express.static("public"))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static.json)
-
-app.use(express.urlencoded({extended:true}))
-
-let corsOptions={
-    origin:"*",
-    method:"*"
+let corsOptions = {
+    origin: "*",
+    method: " *"
 }
 
 app.use(cors(corsOptions))
